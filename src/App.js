@@ -13,11 +13,13 @@ function App() {
 
   const handleAddProject = () => {
     setIsClicked(true);
+
   };
 
 
-  const handleSelectedProject = (projectId) => {
-    setSelectedProject(projectId);
+  const handleSelectedProject = (project) => {
+    setSelectedProject(project);
+    console.log(project)
     setIsClicked(false);
   };
 
@@ -29,12 +31,14 @@ function App() {
     setIsClicked(false);
   }
 
+  // console.log(projects);
+  
   let displayContent;
 
   if (isClicked) {
     displayContent = <NewProject onCancel={handleCancel} onAdd={handleSaveProject} />;
   } else if (selectedProject) {
-    displayContent = <AddTask projects={projects} />;
+    displayContent = <AddTask  project={selectedProject} />;
   } else if (!isClicked) {
     displayContent = <NoProject onClick={handleAddProject} />;
   }
@@ -45,9 +49,10 @@ function App() {
         onClick={handleAddProject}
         projects={projects}
         onProjectSelect={handleSelectedProject}
+        selectedProject={selectedProject}
       />
 
-      <div className="col-span-2  flex items-center   ">{displayContent}</div>
+      <div className="col-span-2  flex items-center">{displayContent}</div>
     </div>
   );
 }
