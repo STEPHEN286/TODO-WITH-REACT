@@ -3,17 +3,17 @@ import React from "react";
 function AddTask({project}) {
   // projects.map((project) => {
   //   const { id, tittleRef } = project;
-
+    const {titleRef, dateRef, descriptionRef} = project
     return (
       <div className="w-4/5 p-9">
         <div className="border-b py-2">
           <div flex className="flex  justify-between items-center">
-            <h1 className="font-extrabold text-3xl">{project.titleRef}</h1>
+            <h1 className="font-extrabold text-3xl">{titleRef}</h1>
             <button>delete</button>
           </div>
-          <p className="text-gray-500">Date</p>
+          <p className="text-gray-500">{dateRef}</p>
 
-          <p>Description</p>
+          <p>{descriptionRef}</p>
         </div>
 
         <div className="mt-3">
