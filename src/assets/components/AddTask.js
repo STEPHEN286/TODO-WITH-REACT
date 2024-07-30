@@ -1,11 +1,15 @@
-import React, { useState } from "react";
-import { v4 as Id } from "uuid";
+import React, { useRef, useState } from "react";
+import { v4 as id } from "uuid";
 
 function AddTask({ project, onDeleteProject }) {
   const [tasks, setTasks] = useState([]);
-  const taskInputRef  
+  const taskInputRef = useRef();
   function handleAddTask() {
+    const taskInput = taskInputRef.current.value;
 
+    const newTask = { id: id(), taskInput };
+    console.log(newTask);
+    setTasks((prevTask) => [...prevTask, newTask]);
   }
   return (
     <div className="w-4/5 p-9">
@@ -23,6 +27,7 @@ function AddTask({ project, onDeleteProject }) {
         <h1 className="font-bold text-3xl">Task</h1>
         <div className="flex gap-2">
           <input
+            ref={taskInputRef}
             type="text"
             id="username"
             className="p-2  bg-gray-200 border-b-0 rounded outline-none  focus:border-b-2 border-blue-900 "
@@ -36,10 +41,15 @@ function AddTask({ project, onDeleteProject }) {
         </div>
         {/* display task */}
         <div className="mt-5  bg-gray-200 p-3 rounded">
-          <div className="flex justify-between my-3">
-            <p>Task</p>
-            <button>clear</button>
-          </div>
+          {tasks.map((task) => {
+            const { taskInput, id } = task;
+            return (
+              <div key={id} className="flex justify-between my-3">
+                <p>{taskInput}</p>
+                <button>clear</button>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>
