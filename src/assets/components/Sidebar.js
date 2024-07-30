@@ -1,4 +1,7 @@
-function Sidebar({ onClick, projects, onProjectSelect }) {
+import { useState } from "react";
+import AddTask from "./AddTask";
+
+function Sidebar({ onClick, projects, onProjectSelect, selectedProject }) {
   return (
     <div className=" w-1/3   bg-blue-950 py-16 px-8  md:w-72">
       <h1 className="text-3xl font-bold text-white   mb-3">Your Project</h1>
@@ -13,14 +16,17 @@ function Sidebar({ onClick, projects, onProjectSelect }) {
 
       <div className="mt-5">
         {projects.map((project) => {
+          let cssClasses = "text-gray-500 font-medium py-2 px-1 hover:bg-blue-900 hover:text-white"
+          if (project.id === selectedProject?.id){
+            cssClasses += "bg-blue-900  "
+            console.log("selected")
+          }
+
           return (
             <p
-              onClick={() => {
-                onProjectSelect(project);
-                console.log(project.id);
-              }}
+              onClick={() => onProjectSelect(project)}
               key={project.id}
-              className="text-gray-500 font-medium py-2 px-1 hover:bg-blue-900 hover:text-white"
+              className={cssClasses}
             >
               {project.titleRef}
             </p>

@@ -43,6 +43,8 @@ function App() {
     setisNewProjectClicked(false);
   }
 
+  // console.log(projects);
+  
   let displayContent;
 
   if (isNewProjectClicked) {
@@ -63,9 +65,10 @@ function App() {
         onClick={handleAddProject}
         projects={projects}
         onProjectSelect={handleSelectedProject}
+        selectedProject={currentProject}
       />
 
-      <div className="col-span-2  flex items-center   ">{displayContent}</div>
+      <div className="col-span-2  flex items-center">{displayContent}</div>
     </div>
   );
 }
